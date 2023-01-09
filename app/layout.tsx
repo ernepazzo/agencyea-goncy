@@ -25,7 +25,7 @@ export default async function RootLayout({
               ))}
             </nav>
           </aside>
-          <main className="p-4">{children}</main>
+          <main className="p-4 flex-1">{children}</main>
         </article>
       </body>
     </html>
