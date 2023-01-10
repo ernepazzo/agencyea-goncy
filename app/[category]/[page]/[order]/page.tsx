@@ -21,18 +21,22 @@ const ProductsPage = async ({ params }: Props) => {
       : b.price.localeCompare(a.price)
   );
 
-  products = products.slice(
+  let productss = products.slice(
     Number(params.page) * 2,
     Number(params.page) * 2 + 2
   );
 
   return (
     <div className="flex flex-col gap-4">
+      <nav className="flex gap-4">
+        <Link href={`${params.category}/${params.page}/desc`}>Descending</Link>
+        <Link href={`${params.category}/${params.page}/asc`}>Ascending</Link>
+      </nav>
       <div
         className="grid gap-4"
         style={{ gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))" }}
       >
-        {products.map((product) => (
+        {productss.map((product) => (
           <div className="border p-4" key={product.id}>
             <h1>{product.name}</h1>
             <p>{product.price}</p>
@@ -50,7 +54,8 @@ const ProductsPage = async ({ params }: Props) => {
           </Link>
         )}
         {params.page}
-        {Number(params.page) * 2 < products.length && (
+        {/* {products.length} */}
+        {Number(params.page) * 2 < products.length - 1 && (
           <Link
             href={`/${params.category}/${Number(params.page) + 1}/${
               params.order
